@@ -3,8 +3,8 @@ This is an implementation of [Real-time Denoising Using BRDF Pre-integration Fac
 
 ### Result Divided By Albedo
 
-![DividedByAlbedo](Result\DividedByAlbedo.png)
+![DividedByAlbedo](Result/DividedByAlbedo.png)
 
 ### Result Divided By Pre-integration
 
-![DividedByPreIntegration](Result\DividedByPreIntegration.png)
+![DividedByPreIntegration](Result/DividedByPreIntegration.png)
