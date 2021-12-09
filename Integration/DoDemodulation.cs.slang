@@ -10,7 +10,7 @@ SamplerState gSampler_linear;
 RWTexture2D<float4> gOutputAlbedo;
 
 
-// TODO: 确定UE的brdf   尤其是albedo是不是和这些是相加关系
+// TODO: 确定UE的brdf   diffuse = basecolor - basecolor * metallic
 [numthreads(1, 1, 1)]
 void Main(uint3 id : SV_DispatchThreadID){
     float2 uv = float2(gNov[id.xy].x, gRoughness[id.xy].x);
@@ -23,6 +23,6 @@ void Main(uint3 id : SV_DispatchThreadID){
     float3 specularColor = lerp(0.08 * specular, albedo, metallic);
 
     float4 returnValue = float4(0.0, 0.0, 0.0, 1.0);
-    returnValue.xyz = albedo + preComputedValue.x * specularColor + preComputedValue.yyy;
+    returnValue.xyz = albedo*(float3(1.0, 1.0, 1.0) - metallic) + preComputedValue.x * specularColor + preComputedValue.yyy;
     gOutputAlbedo[id.xy] = returnValue;
 }
